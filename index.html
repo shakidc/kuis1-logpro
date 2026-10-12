@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuis 1 Logika Pemrograman - Program Studi Teknik Mesin Universitas Malikussaleh</title>
+
+    <meta property="og:type" content="website" />
+  
+    <meta property="og:title" content="Kuis 1 Logika Pemrograman - Program Studi Teknik Mesin Universitas Malikussaleh" />
+ 
+    <meta property="og:description" content="Platform digital untuk pengerjaan kuis 1 mata kuliah Logika Pemrograman" />
+  
+    <meta property="og:url" content="https://shakidc.github.io/kuis1-logpro/" />
+  
+    <meta property="og:image" content="https://shakidc.github.io/kuis1-logpro/logo.png" />
+  
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Kuis 1 Logika Pemrograman - Program Studi Teknik Mesin Universitas Malikussaleh" />
+    <meta name="twitter:description" content="Platform digital untuk pengerjaan kuis 1 mata kuliah Logika Pemrograman" />
+    <meta name="twitter:image" content="https://shakidc.github.io/kuis1-logpro/logo.png" />
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="logo.png" type="image/x-icon">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #0f172a; color: #f8fafc; }
+        .font-serif-kuis { font-family: 'Merriweather', serif; }
+        
+        /* Custom Scrollbar for Dark Theme */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #1e293b; }
+        ::-webkit-scrollbar-thumb { background: #475569; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #64748b; }
+
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(51, 65, 85, 0.5);
+        }
+        
+        .radio-custom:checked + div {
+            border-color: #3b82f6;
+            background-color: rgba(59, 130, 246, 0.1);
+        }
+        
+        .radio-custom:checked + div .radio-circle {
+            border-color: #3b82f6;
+            background-color: #3b82f6;
+        }
+
+        /* Modal Transitions */
+        .modal-enter { opacity: 0; transform: scale(0.95); }
+        .modal-enter-active { opacity: 1; transform: scale(1); transition: opacity 300ms, transform 300ms; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col relative overflow-x-hidden">
+    
+    <!-- Background Accents -->
+    <div class="fixed top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-900 rounded-full blur-[120px] opacity-20 pointer-events-none"></div>
+    <div class="fixed bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-slate-700 rounded-full blur-[120px] opacity-20 pointer-events-none"></div>
+
+    <!-- Header -->
+    <header class="w-full glass-panel sticky top-0 z-40 border-b border-slate-700/50 shadow-lg">
+        <div class="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <img src="logo.png" alt="Logo Unimal" class="h-10 w-10 object-contain bg-white rounded-full p-0.5" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48Y2lyY2xlIGN4PSI1MCIgY3k9IjUwIiByPSI0NSIgZmlsbD0iI2ZmZiIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjI0IiBmb250LWZhbWlseT0iQXJpYWwiIGZpbGw9IiMwMzAiPlVNPC90ZXh0Pjwvc3ZnPg=='">
+                <div>
+                    <h1 class="text-sm md:text-base font-bold text-slate-100 leading-tight">Kuis 1 Logika Pemrograman</h1>
+                    <h2 class="text-xs md:text-sm text-slate-400">Teknik Mesin - Universitas Malikussaleh</h2>
+                </div>
+            </div>
+            <button id="btn-show-leaderboard" class="hidden md:flex items-center gap-2 text-sm text-slate-300 hover:text-white transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h.01"/><path d="M7 20v-4"/><path d="M12 20v-8"/><path d="M17 20V8"/><path d="M22 4v16"/></svg>
+                Papan Skor
+            </button>
+        </div>
+    </header>
+
+    <main class="flex-grow w-full max-w-4xl mx-auto px-4 py-6 md:py-10 z-10 flex flex-col justify-center">
+        
+        <!-- VIEW: Registration -->
+        <div id="view-registration" class="glass-panel rounded-2xl p-6 md:p-10 shadow-2xl w-full max-w-md mx-auto transform transition-all duration-500">
+            <div class="text-center mb-8">
+                <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-blue-500/10 mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                </div>
+                <h2 class="text-2xl font-bold mb-2">Portal Kuis</h2>
+                <p class="text-sm text-slate-400">Masukkan identitas akademik Anda untuk memulai kuis. Kuis berdurasi 50 menit.</p>
+            </div>
+
+            <form id="form-registration" class="space-y-5">
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-1" for="nim">NIM Mahasiswa</label>
+                    <input type="number" id="nim" required class="w-full bg-slate-800/50 border border-slate-600 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all placeholder-slate-500" placeholder="Contoh: 250120001">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-1" for="nama">Nama Lengkap</label>
+                    <input type="text" id="nama" required class="w-full bg-slate-800/50 border border-slate-600 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all placeholder-slate-500" placeholder="Masukkan nama lengkap">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-1" for="kelas">Kelas</label>
+                    <select id="kelas" required class="w-full bg-slate-800/50 border border-slate-600 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all appearance-none">
+                        <option value="" disabled selected>-- Pilih Kelas --</option>
+                        <option value="TMA1">TMA1</option>
+                        <option value="TMA2">TMA2</option>
+                        <option value="TMA3">TMA3</option>
+                        <option value="TMA4">TMA4</option>
+                        <option value="TMA5">TMA5</option>
+                    </select>
+                </div>
+                
+                <div class="pt-2">
+                    <button type="submit" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-medium rounded-lg px-4 py-3 transition-colors shadow-lg shadow-blue-500/20 flex justify-center items-center gap-2">
+                        Mulai Mengerjakan
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                    </button>
+                </div>
+            </form>
+            <div class="mt-6 text-center md:hidden">
+                 <button id="btn-show-leaderboard-mobile" class="text-sm text-blue-400 hover:text-blue-300 underline underline-offset-4">Lihat Papan Skor</button>
+            </div>
+            
+            <!-- Warning/Rules Note -->
+            <div class="mt-6 bg-yellow-900/20 border border-yellow-700/50 rounded-lg p-3 text-xs text-yellow-200/80 leading-relaxed">
+                <strong class="text-yellow-400">Peringatan:</strong> Kuis hanya dapat dikerjakan 1 kali. Meninggalkan halaman kuis, berpindah tab, atau meminimalkan browser akan menyebabkan ujian dihentikan otomatis dan nilai dicatat saat itu juga.
+            </div>
+        </div>
+
+        <!-- VIEW: Quiz Area -->
+        <div id="view-quiz" class="hidden w-full max-w-3xl mx-auto flex-col h-full">
+            
+            <!-- Quiz Meta (Timer & Progress) -->
+            <div class="flex items-center justify-between mb-6 bg-slate-800/80 border border-slate-700 rounded-xl p-4 shadow-lg sticky top-20 z-30">
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-full bg-slate-700 flex items-center justify-center border-2 border-slate-500 font-bold text-lg" id="q-counter">
+                        1
+                    </div>
+                    <div>
+                        <div class="text-xs text-slate-400 uppercase tracking-wider font-semibold mb-1">Pertanyaan</div>
+                        <div class="text-sm font-medium text-slate-200">dari 40 Soal</div>
+                    </div>
+                </div>
+                
+                <div class="flex items-center gap-3 bg-slate-900 rounded-lg px-4 py-2 border border-slate-700">
+                    <svg class="animate-pulse text-rose-500" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    <span id="timer-display" class="font-mono text-xl md:text-2xl font-bold text-rose-400 tracking-wider">50:00</span>
+                </div>
+            </div>
+
+            <!-- Question Card -->
+            <div class="glass-panel rounded-2xl p-6 md:p-8 shadow-xl mb-6">
+                <p id="question-text" class="font-serif-kuis text-lg md:text-xl leading-relaxed text-slate-100 mb-8 font-medium">
+                    <!-- Question will be rendered here -->
+                </p>
+                
+                <div id="options-container" class="space-y-3">
+                    <!-- Options will be rendered here -->
+                </div>
+            </div>
+            
+            <!-- Navigation Controls -->
+            <div class="flex items-center justify-between">
+                <button id="btn-prev" class="hidden bg-slate-800 hover:bg-slate-700 border border-slate-600 text-slate-300 font-medium rounded-lg px-6 py-3 transition-colors flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                    Sebelumnya
+                </button>
+                <div class="flex-grow"></div> <!-- Spacer -->
+                <button id="btn-next" class="bg-blue-600 hover:bg-blue-500 text-white font-medium rounded-lg px-8 py-3 transition-colors shadow-lg shadow-blue-500/20 flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed">
+                    Selanjutnya
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                </button>
+                <button id="btn-submit-quiz" class="hidden bg-emerald-600 hover:bg-emerald-500 text-white font-medium rounded-lg px-8 py-3 transition-colors shadow-lg shadow-emerald-500/20 flex items-center gap-2">
+                    Selesai & Kumpulkan
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- VIEW: Leaderboard -->
+        <div id="view-leaderboard" class="hidden w-full max-w-4xl mx-auto transform transition-all duration-500">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold mb-2 flex items-center justify-center gap-3">
+                    <svg class="text-yellow-500" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8"/><path d="M12 17v4"/><path d="M7 4h10"/><path d="M17 4v8a5 5 0 0 1-10 0V4"/><path d="M4 9h3"/><path d="M17 9h3"/></svg>
+                    Papan Skor Tertinggi
+                </h2>
+                <p class="text-slate-400">Top 10 Mahasiswa dengan skor terbaik pada kuis ini.</p>
+            </div>
+            
+            <div class="glass-panel rounded-2xl overflow-hidden shadow-2xl border border-slate-700">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-slate-800/80 border-b border-slate-700 text-slate-300 text-sm uppercase tracking-wider">
+                                <th class="p-4 w-16 text-center">Rank</th>
+                                <th class="p-4">Nama Mahasiswa</th>
+                                <th class="p-4 w-32 text-center">Kelas</th>
+                                <th class="p-4 w-32 text-center">Skor</th>
+                            </tr>
+                        </thead>
+                        <tbody id="leaderboard-body" class="divide-y divide-slate-700/50">
+                            <!-- Leaderboard rows generated by JS -->
+                            <tr><td colspan="4" class="p-8 text-center text-slate-500">Memuat data...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="mt-8 text-center">
+                <button id="btn-back-home" class="inline-flex items-center gap-2 bg-slate-800 hover:bg-slate-700 border border-slate-600 text-white font-medium rounded-lg px-6 py-3 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                    Kembali ke Halaman Utama
+                </button>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="w-full py-6 border-t border-slate-800/80 text-center text-slate-500 text-xs md:text-sm mt-auto z-10">
+        <p>&copy; 2026 ShakiDC - JTM Unimal</p>
+    </footer>
+
+    <!-- Custom Modal -->
+    <div id="custom-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm transition-opacity">
+        <div class="bg-slate-800 border border-slate-700 rounded-2xl shadow-2xl max-w-md w-full p-6 text-center transform transition-all modal-enter">
+            <div id="modal-icon" class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-red-500/10 mb-5">
+                <svg class="text-red-500" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+            </div>
+            <h3 id="modal-title" class="text-xl font-bold text-white mb-2">Peringatan</h3>
+            <p id="modal-desc" class="text-slate-300 mb-6 text-sm">Pesan informasi akan ditampilkan di sini.</p>
+            <button id="modal-btn" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-medium rounded-lg px-4 py-3 transition-colors">
+                Mengerti
+            </button>
+        </div>
+    </div>
+
+    <script type="module">
+        // Firebase Imports
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-analytics.js";
+        import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js";
+        import { getFirestore, collection, doc, setDoc, getDoc, getDocs } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js";
+
+        // === FIREBASE CONFIGURATION ===
+        // Environment checks to adapt between AI IDE and GitHub Pages
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'kuis-logika-unimal-v1';
+        const firebaseConfig = {
+            apiKey: "AIzaSyBoGidZLXuXrs_6jS5e_A8Xe7DtUVxJyL8",
+            authDomain: "kuis1-logpro.firebaseapp.com",
+            projectId: "kuis1-logpro",
+            storageBucket: "kuis1-logpro.firebasestorage.app",
+            messagingSenderId: "7345854836",
+            appId: "1:7345854836:web:1f9e209e8fd5b4758cf421",
+            measurementId: "G-PYHSPESYJ8"
+        };
+        
+        try {
+            firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : null;
+        } catch(e) {
+            console.log("Firebase config not provided in environment.");
+        }
+
+        // Initialize Firebase variables
+        let app, db, auth, analytics;
+        let isFirebaseActive = false;
+
+        if (firebaseConfig) {
+            try {
+                app = initializeApp(firebaseConfig);
+                analytics = getAnalytics(app);
+                db = getFirestore(app);
+                auth = getAuth(app);
+                isFirebaseActive = true;
+                console.log("Firebase initialized successfully.");
+            } catch (error) {
+                console.error("Firebase initialization failed:", error);
+            }
+        }
+
+        // === QUIZ DATA (JSON ARRAY GENERATED FROM MARKDOWN) ===
+        const quizData = [
+            {
+                q: "Dalam 4 pilar berpikir komputasional, proses fokus pada informasi esensial dan membuang detail acak yang tidak relevan disebut dengan...",
+                o: [
+                    { t: "Dekomposisi", c: false }, { t: "Pengenalan Pola", c: false },
+                    { t: "Abstraksi", c: true }, { t: "Algoritma", c: false }, { t: "Translasi Logika", c: false }
+                ]
+            },
+            {
+                q: "Karakteristik algoritma \"Finiteness\" mengisyaratkan bahwa sebuah algoritma yang baik haruslah...",
+                o: [
+                    { t: "Memiliki urutan penyelesaian yang jelas tanpa ambiguitas", c: false },
+                    { t: "Mampu berjalan pada komputer berspesifikasi rendah", c: false },
+                    { t: "Bersifat rasional dan hemat sumber daya", c: false },
+                    { t: "Menghasilkan output minimal dalam 1 detik", c: false },
+                    { t: "Berhenti secara mutlak setelah mengeksekusi sejumlah langkah tertentu", c: true }
+                ]
+            },
+            {
+                q: "Manakah dari berikut ini yang merepresentasikan tahap \"Deklarasi\" pada siklus variabel?",
+                o: [
+                    { t: "Meminta alokasi memori komputer dan memberikan nama/identitas unik pada variabel", c: true },
+                    { t: "Mengisi nilai pertama kali ke dalam tempat memori yang dialokasikan", c: false },
+                    { t: "Mengubah nilai variabel yang sudah ada dengan nilai baru", c: false },
+                    { t: "Menghapus variabel dari dalam Random Access Memory", c: false },
+                    { t: "Memindahkan data dari RAM menuju prosesor", c: false }
+                ]
+            },
+            {
+                q: "Anda diminta untuk menyimpan status apakah sebuah mesin saat ini sedang menyala atau mati. Tipe data konseptual paling efisien untuk menampung kondisi ini adalah...",
+                o: [
+                    { t: "Float", c: false }, { t: "String", c: false }, { t: "Integer", c: false },
+                    { t: "Boolean", c: true }, { t: "Real", c: false }
+                ]
+            },
+            {
+                q: "Eksekusi dari operasi matematis 10 % 3 pada logika pemrograman akan menghasilkan nilai...",
+                o: [
+                    { t: "3.33", c: false }, { t: "3", c: false }, { t: "0", c: false },
+                    { t: "1", c: true }, { t: "30", c: false }
+                ]
+            },
+            {
+                q: "Saat memecah sistem mesin mobil menjadi blok silinder, sistem transmisi, dan sistem pengereman untuk dianalisis komputasinya, pilar komputasional yang digunakan adalah...",
+                o: [
+                    { t: "Dekomposisi", c: true }, { t: "Abstraksi", c: false }, { t: "Sequence", c: false },
+                    { t: "Definiteness", c: false }, { t: "Pengenalan Pola", c: false }
+                ]
+            },
+            {
+                q: "Operator logika yang hanya akan menghasilkan nilai True jika SELURUH kondisi yang dievaluasi bernilai True adalah...",
+                o: [
+                    { t: "OR", c: false }, { t: "NOT", c: false }, { t: "AND", c: true },
+                    { t: "NOR", c: false }, { t: "XOR", c: false }
+                ]
+            },
+            {
+                q: "Nilai seperti -0.5 dan 99.99 secara spesifik harus didefinisikan ke dalam variabel bertipe data...",
+                o: [
+                    { t: "Integer", c: false }, { t: "Float / Real", c: true }, { t: "Boolean", c: false },
+                    { t: "String", c: false }, { t: "Biner", c: false }
+                ]
+            },
+            {
+                q: "Pada struktur kontrol Sekuensial murni, apa yang terjadi jika langkah ke-3 membutuhkan output dari langkah ke-4 yang urutannya terbalik?",
+                o: [
+                    { t: "Komputer secara otomatis menukar urutan baris kode", c: false },
+                    { t: "Program melewati langkah ke-3 dan langsung ke langkah ke-4", c: false },
+                    { t: "Mesin menunggu hingga langkah ke-4 selesai dengan sendirinya", c: false },
+                    { t: "Logika runtuh karena ketergantungan sebab-akibat tidak terpenuhi", c: true },
+                    { t: "Program mengulang kembali dari langkah pertama", c: false }
+                ]
+            },
+            {
+                q: "Pada konsep If-Else, apabila kondisi pengujian (titik uji) ternyata bernilai False, maka yang akan dieksekusi oleh mesin adalah...",
+                o: [
+                    { t: "Kembali ke awal program", c: false }, { t: "Blok kode Rencana A (Blok True)", c: false },
+                    { t: "Blok kode Rencana B (Blok False)", c: true }, { t: "Kedua blok dieksekusi secara bersamaan", c: false },
+                    { t: "Mesin mengalami kondisi tak berhingga (infinite loop)", c: false }
+                ]
+            },
+            {
+                q: "Untuk menyeleksi 1 kasus dari banyaknya kemungkinan yang ada di mana pengujian akan langsung dihentikan begitu ada 1 syarat yang terpenuhi, struktur kontrol yang paling ideal adalah...",
+                o: [
+                    { t: "Sekuensial", c: false }, { t: "If Tunggal berulang", c: false }, { t: "Switch-Case", c: false },
+                    { t: "If - Else If", c: true }, { t: "Nested Do-While", c: false }
+                ]
+            },
+            {
+                q: "Pada mekanisme percabangan bertingkat (Nested If), sebuah kondisi pada \"lapisan dalam\" dapat dievaluasi HANYA JIKA...",
+                o: [
+                    { t: "Kondisi pada lapisan di luarnya bernilai True", c: true },
+                    { t: "Kondisi pada lapisan di luarnya bernilai False", c: false },
+                    { t: "Terdapat variabel bertipe Float", c: false },
+                    { t: "Mesin menggunakan kompilator, bukan interpreter", c: false },
+                    { t: "Kondisi luarnya memiliki blok \"Else\"", c: false }
+                ]
+            },
+            {
+                q: "Kelemahan atau keterbatasan utama dari struktur Switch-Case dibandingkan percabangan If-Else adalah...",
+                o: [
+                    { t: "Mengeksekusi seluruh kondisi tanpa bisa dihentikan", c: false },
+                    { t: "Terlalu lambat untuk membaca variabel", c: false },
+                    { t: "Hanya dapat mengevaluasi kesamaan nilai mutlak, bukan rentang batas seperti (<, >)", c: true },
+                    { t: "Tidak dapat dikombinasikan dengan sistem aktuator", c: false },
+                    { t: "Hanya mendukung penggunaan tipe data Boolean", c: false }
+                ]
+            },
+            {
+                q: "Tahapan di mana sebuah variabel diuji dengan batas yang ditentukan (misalnya Kelembaban < 30%) dinamakan...",
+                o: [
+                    { t: "Deklarasi Titik", c: false }, { t: "Penyatuan Jalur", c: false }, { t: "Inisialisasi Keputusan", c: false },
+                    { t: "Titik Uji", c: true }, { t: "Pemisahan Komparasi", c: false }
+                ]
+            },
+            {
+                q: "Simbol ANSI internasional pada Flowchart untuk menggambarkan mesin mengambil sebuah keputusan persimpangan (Kondisi) adalah berbentuk...",
+                o: [
+                    { t: "Persegi Panjang", c: false }, { t: "Jajar Genjang", c: false }, { t: "Belah Ketupat", c: true },
+                    { t: "Oval / Terminator", c: false }, { t: "Lingkaran", c: false }
+                ]
+            },
+            {
+                q: "Dalam struktur percabangan, tahap setelah cabang kode (True maupun False) selesai dieksekusi adalah...",
+                o: [
+                    { t: "Program berhenti secara permanen", c: false },
+                    { t: "Program kembali mengevaluasi kondisi yang sama", c: false },
+                    { t: "Menjalankan Switch-Case default", c: false },
+                    { t: "Masuk ke perulangan tak berhingga", c: false },
+                    { t: "Penyatuan kembali ke jalur utama (sekuensial)", c: true }
+                ]
+            },
+            {
+                q: "Konsep Don't Repeat Yourself (DRY) pada pemrograman bertujuan untuk...",
+                o: [
+                    { t: "Memastikan variabel tidak pernah berubah nilai (immutable)", c: false },
+                    { t: "Menghindari penulisan instruksi identik secara sekuensial dengan memanfaatkan perulangan", c: true },
+                    { t: "Mencegah pengguna memasukkan nilai data yang sama dua kali", c: false },
+                    { t: "Menggunakan kompilator yang tidak perlu mengulang proses baca", c: false },
+                    { t: "Menolak kondisi percabangan bersarang yang rumit", c: false }
+                ]
+            },
+            {
+                q: "Anda diminta memprogram pergerakan lengan CNC untuk mengebor 50 lubang pelat baja yang polanya sudah terdefinisi secara statis. Struktur perulangan paling efisien untuk skenario ini adalah...",
+                o: [
+                    { t: "Perulangan Terukur (For)", c: true }, { t: "Perulangan Do-While", c: false },
+                    { t: "Perulangan While", c: false }, { t: "Rekursi Percabangan", c: false }, { t: "Sekuensial Bertingkat", c: false }
+                ]
+            },
+            {
+                q: "Tiga pilar utama agar logika For Loop tidak menjadi infinite loop adalah harus adanya Inisialisasi, Syarat Berhenti, dan...",
+                o: [
+                    { t: "Titik Uji Alternatif", c: false }, { t: "Mutasi Boolean", c: false },
+                    { t: "Pola Langkah (Inkrementasi/Dekrementasi)", c: true }, { t: "Deklarasi Konstanta", c: false },
+                    { t: "Jajar Genjang Input", c: false }
+                ]
+            },
+            {
+                q: "Karakteristik absolut dari perulangan While (Pre-test) jika sejak awal iterasi syarat sudah bernilai False adalah...",
+                o: [
+                    { t: "Program akan crash", c: false }, { t: "Mengeksekusi blok kode minimal 1 kali", c: false },
+                    { t: "Beralih secara otomatis menjadi Do-While", c: false },
+                    { t: "Blok perintah di dalamnya tidak akan dieksekusi sama sekali (0 siklus)", c: true },
+                    { t: "Meminta user untuk memperbaiki syarat logika", c: false }
+                ]
+            },
+            {
+                q: "Mengapa sistem pengapian mesin (starter) yang memutar poros engkol sebelum mengevaluasi apakah mesin sudah menyala, lebih cocok direpresentasikan dengan tipe perulangan Do-While?",
+                o: [
+                    { t: "Karena Do-While menguji syarat di awal (Pre-test)", c: false },
+                    { t: "Karena Do-While memaksa pekerjaan dilakukan minimal 1 siklus penuh sebelum pengujian syarat (Post-test)", c: true },
+                    { t: "Karena Do-While tidak memerlukan syarat berhenti", c: false },
+                    { t: "Karena Do-While dapat mengeksekusi tipe data string secara langsung", c: false },
+                    { t: "Karena Do-While dirancang eksklusif untuk mesin pembakaran", c: false }
+                ]
+            },
+            {
+                q: "\"Jarum Menit harus berputar penuh dari 1 hingga 60 barulah Jarum Jam bertambah 1 angka.\" Konsep ini merepresentasikan aturan emas pada...",
+                o: [
+                    { t: "Switch-Case Bersarang", c: false }, { t: "Sequential Increment", c: false },
+                    { t: "Pointer Variabel", c: false }, { t: "Perulangan Bersarang / Nested Loop", c: true },
+                    { t: "Flowchart Bercabang", c: false }
+                ]
+            },
+            {
+                q: "Pada sebuah logika perulangan bersarang (Nested Loop), apa yang terjadi jika perulangan dalam (Inner Loop) tidak memiliki syarat berhenti yang tercapai?",
+                o: [
+                    { t: "Outer Loop akan mengambil alih dan menghentikan program", c: false },
+                    { t: "Mesin langsung lompat ke struktur selanjutnya", c: false },
+                    { t: "Program terjebak dalam infinite loop pada level dalam, dan Outer Loop tidak akan pernah bergeser", c: true },
+                    { t: "Inner Loop mengembalikan nilai Boolean False", c: false },
+                    { t: "IDE secara paksa menutup perulangan tersebut", c: false }
+                ]
+            },
+            {
+                q: "Uncounted Loop digunakan secara spesifik untuk memecahkan permasalahan di mana...",
+                o: [
+                    { t: "Kita sudah tahu persis jumlah iterasi dari perhitungan awal", c: false },
+                    { t: "Kita tidak tahu jumlah iterasinya, namun kita tahu secara logis syarat kapan ia harus berhenti", c: true },
+                    { t: "Sistem memiliki percabangan If-Else yang lebih dari 10 lapis", c: false },
+                    { t: "Tidak terdapat titik evaluasi (Decision)", c: false }, { t: "Parameter data merupakan nilai Float/Real", c: false }
+                ]
+            },
+            {
+                q: "Memutar poros spindel pada mesin Milling CNC sesuai kalkulasi koordinat merupakan bagian dari tahapan ... pada paradigma sistem komputasi.",
+                o: [
+                    { t: "Input", c: false }, { t: "Process", c: true }, { t: "Output", c: false },
+                    { t: "Sequential", c: false }, { t: "Translasi", c: false }
+                ]
+            },
+            {
+                q: "Jika Anda membaca blueprint logika yang memperlihatkan lambang Jajar Genjang, maka operasi tersebut sedang menjalankan perintah berupa...",
+                o: [
+                    { t: "Titik persimpangan percabangan True/False", c: false },
+                    { t: "Penugasan nilai variabel / kalkulasi matematika", c: false },
+                    { t: "Pertukaran informasi (Membaca input data atau Menampilkan output)", c: true },
+                    { t: "Menandakan titik awal Start jalannya komputasi", c: false },
+                    { t: "Koneksi dari halaman flowchart yang terputus", c: false }
+                ]
+            },
+            {
+                q: "Anda menuliskan rumusan `Luas = Panjang * Lebar` di dalam alur logika. Dalam diagram Flowchart internasional, rumus ini mutlak diletakkan di dalam simbol...",
+                o: [
+                    { t: "Oval", c: false }, { t: "Persegi Panjang", c: true }, { t: "Belah Ketupat", c: false },
+                    { t: "Jajar Genjang", c: false }, { t: "Lingkaran", c: false }
+                ]
+            },
+            {
+                q: "Jika ruang pada kertas tidak cukup sehingga Flowchart terpotong pada halaman yang sama, lambang yang digunakan sebagai konektornya adalah...",
+                o: [
+                    { t: "Trapesium", c: false }, { t: "Belah Ketupat", c: false }, { t: "Lingkaran", c: true },
+                    { t: "Kotak berlapis", c: false }, { t: "Titik-titik garis penghubung", c: false }
+                ]
+            },
+            {
+                q: "Pseudocode adalah teks semi-formal untuk mendeskripsikan logika algoritma. Mengapa Pseudocode dirancang agar menghindari sintaks bawaan (Built-in Syntax)?",
+                o: [
+                    { t: "Agar mudah dibaca secara universal dan tidak terikat pada satu bahasa kompilator spesifik tertentu", c: true },
+                    { t: "Karena kompilator tidak mengenali fungsi bawaan", c: false },
+                    { t: "Agar komputer bisa langsung menjalankan pseudocode menjadi program biner", c: false },
+                    { t: "Karena Pseudocode adalah bahasa pemrograman level terendah", c: false },
+                    { t: "Untuk menguji kecepatan eksekusi kode", c: false }
+                ]
+            },
+            {
+                q: "Terdapat tulisan: `IF Suhu_Mesin > 100 THEN`. Kata `IF` dan `THEN` ditulis huruf kapital karena mengikuti aturan Pseudocode yaitu...",
+                o: [
+                    { t: "Memenuhi syarat kompiler bahasa C++", c: false }, { t: "Mengindikasikan penamaan variabel global", c: false },
+                    { t: "Membedakan secara visual instruksi (kata kunci) utama dengan teks biasa/variabel", c: true },
+                    { t: "Mencegah error logika pembagian", c: false }, { t: "Mendeklarasikan konstanta yang nilainya tak berubah", c: false }
+                ]
+            },
+            {
+                q: "Penggunaan indentasi (menjorokkan baris dengan Tab) pada penulisan pseudocode bertujuan untuk...",
+                o: [
+                    { t: "Meningkatkan ukuran file program", c: false },
+                    { t: "Menunjukkan hierarki visual dari sebuah cakupan blok logika, percabangan, atau perulangan", c: true },
+                    { t: "Menghentikan program seketika (breakpoint debugging)", c: false },
+                    { t: "Memberitahu Interpreter untuk membaca baris dari bawah", c: false },
+                    { t: "Menghemat penggunaan variabel di memory", c: false }
+                ]
+            },
+            {
+                q: "Dalam analogi manufaktur (teknik mesin), sinyal error karena material mengalami keretakan diklasifikasikan ke dalam siklus IPO pada tahapan...",
+                o: [
+                    { t: "Inisialisasi", c: false }, { t: "Input", c: false }, { t: "Evaluasi Process", c: false },
+                    { t: "Output", c: true }, { t: "Sensor Terminator", c: false }
+                ]
+            },
+            {
+                q: "Mengapa sebuah bahasa pemrograman dengan syntax seperti \"ADD\", \"MOV\", \"PUSH\" disebut sebagai bahasa Mid-level (Assembly)?",
+                o: [
+                    { t: "Karena instruksinya mendekati operasi register memori mesin, namun masih direpresentasikan dengan mnemonik singkatan agar bisa diingat pemrogram", c: true },
+                    { t: "Karena ia dapat dijalankan tanpa kompilator sama sekali", c: false },
+                    { t: "Karena ia menggunakan gaya penulisan drag-and-drop antarmuka GUI", c: false },
+                    { t: "Karena format tulisannya menggunakan 0 dan 1 murni", c: false },
+                    { t: "Karena ia berjalan di cloud", c: false }
+                ]
+            },
+            {
+                q: "Bahasa pemrograman yang harus menerjemahkan Source Code baris demi baris secara otomatis pada waktu berjalan (seperti di rapat PBB) dilakukan menggunakan program...",
+                o: [
+                    { t: "Kompilator (Compiler)", c: false }, { t: "Flowline Executor", c: false },
+                    { t: "Assembler", c: false }, { t: "Interpretator (Interpreter)", c: true },
+                    { t: "Pseudocode Generator", c: false }
+                ]
+            },
+            {
+                q: "Salah satu keunggulan terbesar menggunakan perangkat perantara tipe Interpreter untuk eksekusi kode adalah...",
+                o: [
+                    { t: "Berkas program yang dihasilkan tidak bisa diakses orang lain (sangat aman)", c: false },
+                    { t: "Sangat cepat karena semua baris dikalkulasi sekaligus", c: false },
+                    { t: "Sangat mudah digunakan untuk pencarian kesalahan (debugging) baris demi baris", c: true },
+                    { t: "Bisa dieksekusi tanpa komputer", c: false },
+                    { t: "Membebaskan seluruh alokasi memori RAM", c: false }
+                ]
+            },
+            {
+                q: "Kebalikannya, apa akibat dari penggunaan jenis Compiler jika Anda melewatkan atau membuat kesalahan titik koma (;) pada satu baris saja?",
+                o: [
+                    { t: "Kompilator akan melewati baris tersebut dan lanjut ke bawah", c: false },
+                    { t: "Program berjalan lancar lalu mati tepat saat mencapai baris itu", c: false },
+                    { t: "Seluruh proses kompilasi gagal dari awal dan program urung menjadi berkas executable", c: true },
+                    { t: "Komputer akan berusaha menebak baris dengan AI", c: false },
+                    { t: "Nilai variabel tersebut diubah secara paksa menjadi True", c: false }
+                ]
+            },
+            {
+                q: "Kepanjangan yang tepat untuk perangkat lunak IDE yang bertindak sebagai \"bengkel\" komprehensif penulisan perangkat lunak adalah...",
+                o: [
+                    { t: "International Development Executor", c: false }, { t: "Integrated Development Environment", c: true },
+                    { t: "Internal Debugging Evaluator", c: false }, { t: "Interpolated Decimal Environment", c: false },
+                    { t: "Intelligent Digital Environment", c: false }
+                ]
+            },
+            {
+                q: "Perangkat keras fisik (hardware seperti prosessor PC atau mikrokontroler) secara harfiah tidak memahami kode `C++` atau `Python`. Level bahasa satu-satunya yang mereka mengerti adalah...",
+                o: [
+                    { t: "Bahasa Assembly", c: false }, { t: "High-Level Language", c: false },
+                    { t: "Machine Code / Biner (1 dan 0)", c: true }, { t: "Pseudocode ANSI", c: false },
+                    { t: "Kode BCD (Binary Coded Decimal)", c: false }
+                ]
+            },
+            {
+                q: "Compiler menghasilkan sebuah file hasil (seperti `.exe`) yang bisa dijalankan berkali-kali tanpa harus dikompilasi ulang. Di analogi bahasa manusia pada materi, hal ini ibarat...",
+                o: [
+                    { t: "Penerjemah PBB di konferensi lisan", c: false },
+                    { t: "Menerjemahkan seluruh buku utuh lalu mencetak hasil terjemahannya untuk dibaca kapan saja", c: true },
+                    { t: "Menggunakan kamus saku untuk menebak kata", c: false },
+                    { t: "Mendengarkan lagu bahasa asing tanpa lirik", c: false },
+                    { t: "Membaca flowchart tanpa implementasi", c: false }
+                ]
+            },
+            {
+                q: "Python dan MATLAB adalah dua contoh platform yang secara bawaan memproses kodenya dengan mekanisme...",
+                o: [
+                    { t: "Mesin ketik manual", c: false }, { t: "Kompilasi 100% (Pure Compiled)", c: false },
+                    { t: "Interpretasi (Interpreter)", c: true }, { t: "Translasi Assembly (Assembler)", c: false },
+                    { t: "Sistem Operasi Lapis Bawah", c: false }
+                ]
+            }
+        ];
+
+        
+        // State variables
+        let currentQuizData = []; // Will hold shuffled questions and options
+        let userAnswers = {};
+        let currentQuestionIndex = 0;
+        let currentUser = null; // { nim, nama, kelas }
+        
+        let timerInterval = null;
+        const totalDurationInSeconds = 50 * 60; // 50 minutes
+        let timeRemaining = totalDurationInSeconds;
+        let isQuizActive = false;
+        
+        let inMemoryLeaderboard = []; // Fallback if Firebase not available
+
+        // DOM Elements
+        const viewReg = document.getElementById('view-registration');
+        const viewQuiz = document.getElementById('view-quiz');
+        const viewLeader = document.getElementById('view-leaderboard');
+        const formReg = document.getElementById('form-registration');
+        
+        // Utility: Fisher-Yates Shuffle Algorithm
+        function shuffleArray(array) {
+            let currentIndex = array.length, randomIndex;
+            while (currentIndex != 0) {
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex--;
+                [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+            }
+            return array;
+        }
+
+        // Custom Modal Function
+        function showModal(title, message, isError = true, onConfirm = null) {
+            const modal = document.getElementById('custom-modal');
+            const icon = document.getElementById('modal-icon');
+            
+            document.getElementById('modal-title').textContent = title;
+            document.getElementById('modal-desc').textContent = message;
+            
+            if (isError) {
+                icon.innerHTML = `<svg class="text-red-500" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>`;
+                icon.className = "mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-red-500/10 mb-5";
+            } else {
+                icon.innerHTML = `<svg class="text-blue-500" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>`;
+                icon.className = "mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-blue-500/10 mb-5";
+            }
+
+            modal.classList.remove('hidden');
+            
+            const btn = document.getElementById('modal-btn');
+            
+            // Clean up old event listeners
+            const newBtn = btn.cloneNode(true);
+            btn.parentNode.replaceChild(newBtn, btn);
+            
+            newBtn.addEventListener('click', () => {
+                modal.classList.add('hidden');
+                if (onConfirm) onConfirm();
+            });
+        }
+
+        
+        // Anti-Cheat Mechanisms
+        function handleVisibilityChange() {
+            if (isQuizActive && document.visibilityState === 'hidden') {
+                triggerCheatPenalty();
+            }
+        }
+        
+        function handleBlur() {
+            if (isQuizActive) {
+                triggerCheatPenalty();
+            }
+        }
+
+        function triggerCheatPenalty() {
+            if (!isQuizActive) return;
+            isQuizActive = false; // Stop recursive triggers
+            clearInterval(timerInterval);
+            
+            // Auto submit what they have
+            submitQuizAndCalculateScore(true); // true indicates penalty/cheating
+        }
+
+        // Setup Anti-Cheat Listeners
+        document.addEventListener('visibilitychange', handleVisibilityChange);
+        window.addEventListener('blur', handleBlur);
+
+        // Timer Logic
+        function startTimer() {
+            const display = document.getElementById('timer-display');
+            
+            timerInterval = setInterval(() => {
+                timeRemaining--;
+                
+                let minutes = Math.floor(timeRemaining / 60);
+                let seconds = timeRemaining % 60;
+                
+                display.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                
+                // Color warnings
+                if (timeRemaining <= 300) { // 5 minutes left
+                    display.classList.add('text-red-500');
+                    display.classList.remove('text-rose-400');
+                }
+                
+                if (timeRemaining <= 0) {
+                    clearInterval(timerInterval);
+                    isQuizActive = false;
+                    showModal('Waktu Habis!', 'Waktu pengerjaan kuis Anda telah habis. Jawaban akan dikumpulkan otomatis.', false, () => {
+                        submitQuizAndCalculateScore(false);
+                    });
+                }
+            }, 1000);
+        }
+
+
+        function prepareQuizData() {
+            // Deep copy to prevent mutating original data
+            let copiedData = JSON.parse(JSON.stringify(quizData));
+            
+            // Rule 6: Urutan soal diacak per sesi per mahasiswa
+            copiedData = shuffleArray(copiedData);
+            
+            // Rule 2: Opsi diacak urutannya selalu
+            copiedData.forEach(qItem => {
+                qItem.o = shuffleArray(qItem.o);
+            });
+            
+            currentQuizData = copiedData;
+        }
+
+        function renderQuestion(index) {
+            const qData = currentQuizData[index];
+            document.getElementById('q-counter').textContent = index + 1;
+            document.querySelector('#view-quiz .text-sm.font-medium').textContent = `dari ${currentQuizData.length} Soal`;
+            
+            document.getElementById('question-text').textContent = qData.q;
+            
+            const optionsContainer = document.getElementById('options-container');
+            optionsContainer.innerHTML = ''; // Clear previous
+            
+            // Mapping letters A, B, C, D, E
+            const letters = ['A', 'B', 'C', 'D', 'E'];
+            
+            qData.o.forEach((opt, idx) => {
+                const optId = `opt-${index}-${idx}`;
+                const isChecked = userAnswers[index] === idx ? 'checked' : '';
+                
+                const html = `
+                <label class="relative block cursor-pointer group">
+                    <input type="radio" name="question-${index}" value="${idx}" class="radio-custom sr-only" ${isChecked} onchange="window.selectAnswer(${index}, ${idx})">
+                    <div class="flex items-center p-4 bg-slate-800/50 border border-slate-600 rounded-xl hover:bg-slate-700/50 transition-all">
+                        <div class="radio-circle w-6 h-6 rounded-full border-2 border-slate-500 mr-4 flex-shrink-0 flex items-center justify-center transition-colors">
+                            <div class="w-2.5 h-2.5 rounded-full bg-white opacity-0 transition-opacity ${isChecked ? 'opacity-100' : ''}"></div>
+                        </div>
+                        <span class="font-bold text-slate-400 mr-3">${letters[idx]}.</span>
+                        <span class="text-slate-200 text-sm md:text-base">${opt.t}</span>
+                    </div>
+                </label>
+                `;
+                optionsContainer.insertAdjacentHTML('beforeend', html);
+            });
+            
+            // Update Buttons State
+            document.getElementById('btn-prev').classList.toggle('hidden', index === 0);
+            
+            if (index === currentQuizData.length - 1) {
+                document.getElementById('btn-next').classList.add('hidden');
+                document.getElementById('btn-submit-quiz').classList.remove('hidden');
+            } else {
+                document.getElementById('btn-next').classList.remove('hidden');
+                document.getElementById('btn-submit-quiz').classList.add('hidden');
+            }
+        }
+
+        // Expose function to global scope for the inline onclick handler
+        window.selectAnswer = function(qIndex, optIndex) {
+            userAnswers[qIndex] = optIndex;
+            // Re-render to update UI circles
+            renderQuestion(qIndex);
+        };
+
+        // Navigation logic
+        document.getElementById('btn-next').addEventListener('click', () => {
+            if (currentQuestionIndex < currentQuizData.length - 1) {
+                currentQuestionIndex++;
+                renderQuestion(currentQuestionIndex);
+            }
+        });
+        
+        document.getElementById('btn-prev').addEventListener('click', () => {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                renderQuestion(currentQuestionIndex);
+            }
+        });
+
+
+        async function submitQuizAndCalculateScore(isPenalty = false) {
+            isQuizActive = false;
+            clearInterval(timerInterval);
+            
+            let correctCount = 0;
+            currentQuizData.forEach((q, idx) => {
+                const selectedOptIndex = userAnswers[idx];
+                if (selectedOptIndex !== undefined) {
+                    if (q.o[selectedOptIndex].c === true) {
+                        correctCount++;
+                    }
+                }
+            });
+            
+            // Calculate scale to 100
+            let finalScore = Math.round((correctCount / currentQuizData.length) * 100);
+            
+            if (isPenalty) {
+                showModal("Pelanggaran Terdeteksi!", `Anda meninggalkan halaman kuis. Kuis dihentikan paksa. Skor yang tersimpan: ${finalScore}`, true, () => saveScore(finalScore));
+            } else {
+                saveScore(finalScore);
+            }
+        }
+
+        async function saveScore(score) {
+            const resultData = {
+                nim: currentUser.nim,
+                nama: currentUser.nama,
+                kelas: currentUser.kelas,
+                skor: score,
+                timestamp: new Date().getTime()
+            };
+
+            // IN-MEMORY FALLBACK
+            inMemoryLeaderboard.push(resultData);
+            
+            if (isFirebaseActive) {
+                try {
+                    // Requires auth first
+                    await signInAnonymously(auth);
+                    
+                    // Save to Firestore using NIM as document ID to enforce 1 attempt
+                    const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'scores', currentUser.nim);
+                    await setDoc(docRef, resultData);
+                } catch (e) {
+                    console.error("Gagal menyimpan ke Firebase, menggunakan in-memory.", e);
+                }
+            }
+            
+            // Switch to Leaderboard
+            viewQuiz.classList.add('hidden');
+            showLeaderboard();
+        }
+
+
+        formReg.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const nimInput = document.getElementById('nim').value.trim();
+            const namaInput = document.getElementById('nama').value.trim();
+            const kelasInput = document.getElementById('kelas').value;
+            
+            // Rule 5: Cek apakah NIM sudah pernah mengerjakan (Firebase Check)
+            const submitBtn = formReg.querySelector('button[type="submit"]');
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = 'Memeriksa Data...';
+
+            let hasAttempted = false;
+
+            if (isFirebaseActive) {
+                try {
+                    await signInAnonymously(auth);
+                    const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'scores', nimInput);
+                    const docSnap = await getDoc(docRef);
+                    
+                    if (docSnap.exists()) {
+                        hasAttempted = true;
+                    }
+                } catch (e) {
+                    console.error("Firebase fetch error", e);
+                }
+            } else {
+                // In-Memory Check
+                hasAttempted = inMemoryLeaderboard.some(item => item.nim === nimInput);
+            }
+
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = 'Mulai Mengerjakan <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>';
+
+            if (hasAttempted) {
+                showModal('Akses Ditolak', `NIM ${nimInput} sudah tercatat mengerjakan kuis ini. Setiap mahasiswa hanya diizinkan mengambil ujian 1 kali.`);
+                return;
+            }
+
+            // Valid, Set User and Start
+            currentUser = { nim: nimInput, nama: namaInput, kelas: kelasInput };
+            
+            // Transition Views
+            viewReg.classList.add('hidden');
+            viewQuiz.classList.remove('hidden');
+            viewQuiz.classList.add('flex');
+            
+            // Setup Quiz
+            prepareQuizData();
+            currentQuestionIndex = 0;
+            userAnswers = {};
+            renderQuestion(0);
+            
+            // Start Timer & Anti-Cheat Logic
+            timeRemaining = totalDurationInSeconds;
+            isQuizActive = true;
+            startTimer();
+        });
+
+        document.getElementById('btn-submit-quiz').addEventListener('click', () => {
+            // Confirm Dialog custom
+            const modal = document.getElementById('custom-modal');
+            document.getElementById('modal-title').textContent = "Selesai Mengerjakan?";
+            document.getElementById('modal-desc').textContent = "Pastikan semua jawaban telah diisi. Kuis yang sudah dikumpulkan tidak dapat diubah lagi.";
+            
+            const icon = document.getElementById('modal-icon');
+            icon.innerHTML = `<svg class="text-blue-500" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>`;
+            icon.className = "mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-blue-500/10 mb-5";
+            
+            const btn = document.getElementById('modal-btn');
+            
+            // create cancel button dynamically
+            const cancelBtn = document.createElement('button');
+            cancelBtn.className = "w-full mt-2 bg-transparent hover:bg-slate-700 text-slate-300 font-medium rounded-lg px-4 py-3 transition-colors";
+            cancelBtn.textContent = "Kembali Mengerjakan";
+            cancelBtn.id = "temp-cancel-btn";
+            
+            if(!document.getElementById('temp-cancel-btn')){
+                btn.parentNode.appendChild(cancelBtn);
+            }
+            
+            modal.classList.remove('hidden');
+            
+            const newBtn = btn.cloneNode(true);
+            btn.parentNode.replaceChild(newBtn, btn);
+            
+            newBtn.textContent = "Ya, Kumpulkan";
+            
+            newBtn.addEventListener('click', () => {
+                modal.classList.add('hidden');
+                if(document.getElementById('temp-cancel-btn')) document.getElementById('temp-cancel-btn').remove();
+                submitQuizAndCalculateScore(false);
+            });
+            
+            document.getElementById('temp-cancel-btn').addEventListener('click', () => {
+                 modal.classList.add('hidden');
+                 document.getElementById('temp-cancel-btn').remove();
+            });
+        });
+
+
+        async function showLeaderboard() {
+            viewReg.classList.add('hidden');
+            viewQuiz.classList.add('hidden');
+            viewQuiz.classList.remove('flex');
+            viewLeader.classList.remove('hidden');
+
+            const tbody = document.getElementById('leaderboard-body');
+            tbody.innerHTML = '<tr><td colspan="4" class="p-8 text-center text-slate-400"><svg class="animate-spin h-6 w-6 mx-auto mb-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Memuat data...</td></tr>';
+
+            let scoresData = [];
+
+            if (isFirebaseActive) {
+                try {
+                    await signInAnonymously(auth);
+                    // No complex query, fetch all and sort locally as per Rule 2
+                    const colRef = collection(db, 'artifacts', appId, 'public', 'data', 'scores');
+                    const snapshot = await getDocs(colRef);
+                    
+                    snapshot.forEach(doc => {
+                        scoresData.push(doc.data());
+                    });
+                } catch (e) {
+                    console.error("Firebase read error, using local data", e);
+                    scoresData = [...inMemoryLeaderboard];
+                }
+            } else {
+                scoresData = [...inMemoryLeaderboard];
+            }
+
+            // Sort by score descending, then by timestamp ascending
+            scoresData.sort((a, b) => {
+                if (b.skor !== a.skor) return b.skor - a.skor;
+                return (a.timestamp || 0) - (b.timestamp || 0);
+            });
+
+            // Get Top 10
+            const top10 = scoresData.slice(0, 10);
+            tbody.innerHTML = '';
+
+            if (top10.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="4" class="p-8 text-center text-slate-500">Belum ada data nilai.</td></tr>';
+                return;
+            }
+
+            top10.forEach((data, index) => {
+                let rankStyle = 'text-slate-400 font-medium';
+                let rowBg = 'bg-slate-800/20';
+                
+                if (index === 0) { rankStyle = 'text-yellow-400 font-bold text-lg drop-shadow-md'; rowBg = 'bg-yellow-500/10'; }
+                else if (index === 1) { rankStyle = 'text-slate-300 font-bold text-lg'; rowBg = 'bg-slate-300/10'; }
+                else if (index === 2) { rankStyle = 'text-amber-600 font-bold text-lg'; rowBg = 'bg-amber-700/10'; }
+
+                const row = `
+                    <tr class="${rowBg} border-b border-slate-700/30 hover:bg-slate-700/40 transition-colors">
+                        <td class="p-4 text-center ${rankStyle}">#${index + 1}</td>
+                        <td class="p-4">
+                            <div class="font-medium text-slate-200 capitalize">${data.nama.toLowerCase()}</div>
+                            <div class="text-xs text-slate-500 font-mono">${data.nim}</div>
+                        </td>
+                        <td class="p-4 text-center text-slate-300 font-medium">Kelas ${data.kelas}</td>
+                        <td class="p-4 text-center font-bold text-blue-400 text-lg">${data.skor}</td>
+                    </tr>
+                `;
+                tbody.insertAdjacentHTML('beforeend', row);
+            });
+        }
+
+        // Navigation Bindings
+        document.getElementById('btn-show-leaderboard').addEventListener('click', showLeaderboard);
+        document.getElementById('btn-show-leaderboard-mobile').addEventListener('click', showLeaderboard);
+        
+        document.getElementById('btn-back-home').addEventListener('click', () => {
+            viewLeader.classList.add('hidden');
+            viewReg.classList.remove('hidden');
+            document.getElementById('form-registration').reset();
+        });
+
+    </script>
+</body>
+</html>
