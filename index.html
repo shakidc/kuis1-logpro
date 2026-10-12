@@ -51,10 +51,6 @@
             border-color: #3b82f6;
             background-color: #3b82f6;
         }
-
-        /* Modal Transitions */
-        .modal-enter { opacity: 0; transform: scale(0.95); }
-        .modal-enter-active { opacity: 1; transform: scale(1); transition: opacity 300ms, transform 300ms; }
     </style>
 </head>
 <body class="min-h-screen flex flex-col relative overflow-x-hidden">
@@ -226,7 +222,7 @@
 
     <!-- Custom Modal -->
     <div id="custom-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm transition-opacity">
-        <div class="bg-slate-800 border border-slate-700 rounded-2xl shadow-2xl max-w-md w-full p-6 text-center transform transition-all modal-enter">
+        <div class="bg-slate-800 border border-slate-700 rounded-2xl shadow-2xl max-w-md w-full p-6 text-center transform transition-all">
             <div id="modal-icon" class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-red-500/10 mb-5">
                 <svg class="text-red-500" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
             </div>
