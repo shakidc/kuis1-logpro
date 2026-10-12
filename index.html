@@ -734,9 +734,9 @@
                 if (timeRemaining <= 0) {
                     clearInterval(timerInterval);
                     isQuizActive = false;
-                    showModal('Waktu Habis!', 'Waktu pengerjaan kuis Anda telah habis. Jawaban akan dikumpulkan otomatis.', false, () => {
-                        submitQuizAndCalculateScore(false);
-                    });
+                    // PERBAIKAN: Langsung submit secara otomatis tanpa menunggu klik modal
+                    submitQuizAndCalculateScore(false);
+                    showModal('Waktu Habis!', 'Waktu pengerjaan kuis Anda telah habis. Jawaban telah dikumpulkan otomatis.', false);
                 }
             }, 1000);
         }
@@ -841,10 +841,11 @@
             // Calculate scale to 100
             let finalScore = Math.round((correctCount / currentQuizData.length) * 100);
             
+            // PERBAIKAN: Langsung simpan skor ke database tanpa menunggu user klik apapun
+            saveScore(finalScore);
+            
             if (isPenalty) {
-                showModal("Pelanggaran Terdeteksi!", `Anda meninggalkan halaman kuis. Kuis dihentikan paksa. Skor yang tersimpan: ${finalScore}`, true, () => saveScore(finalScore));
-            } else {
-                saveScore(finalScore);
+                showModal("Pelanggaran Terdeteksi!", `Anda meninggalkan halaman kuis. Kuis dihentikan paksa. Nilai Anda yang terekam saat ini adalah: ${finalScore}`, true);
             }
         }
 
