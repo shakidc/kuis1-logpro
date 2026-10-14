@@ -635,6 +635,14 @@
         
         let inMemoryLeaderboard = []; // Fallback if Firebase not available
 
+        // === PENGATURAN JADWAL KUIS (Ubah di sini) ===
+        const QUIZ_SCHEDULE = {
+            isActive: true,         // Ubah ke false jika ingin menutup paksa kuis di luar jadwal
+            date: "2026-10-15",     // Format: YYYY-MM-DD
+            startTime: "09:00",     // Format: HH:MM (24-Jam, Waktu WIB)
+            endTime: "13:00"        // Format: HH:MM (24-Jam, Waktu WIB)
+        };
+
         // DOM Elements
         const viewReg = document.getElementById('view-registration');
         const viewQuiz = document.getElementById('view-quiz');
@@ -736,7 +744,6 @@
                 }
             }, 1000);
         }
-
 
         function prepareQuizData() {
             // Deep copy to prevent mutating original data
@@ -879,7 +886,37 @@
         formReg.addEventListener('submit', async (e) => {
             e.preventDefault();
             
+            // --- 1. VALIDASI WAKTU DAN TANGGAL (WIB) ---
+            if (!QUIZ_SCHEDULE.isActive) {
+                showModal('Akses Ditolak', 'Kuis saat ini sedang ditutup/dinonaktifkan oleh Dosen.');
+                return;
+            }
+
+            // Dapatkan waktu saat ini khusus zona Asia/Jakarta (WIB)
+            const now = new Date();
+            const wibTime = new Date(now.toLocaleString("en-US", {timeZone: "Asia/Jakarta"}));
+            const currentDateStr = wibTime.getFullYear() + "-" + String(wibTime.getMonth() + 1).padStart(2, '0') + "-" + String(wibTime.getDate()).padStart(2, '0');
+            const currentTimeStr = String(wibTime.getHours()).padStart(2, '0') + ":" + String(wibTime.getMinutes()).padStart(2, '0');
+
+            if (currentDateStr !== QUIZ_SCHEDULE.date) {
+                showModal('Di Luar Jadwal', `Kuis ini hanya dapat diakses pada tanggal ${QUIZ_SCHEDULE.date}.`);
+                return;
+            }
+
+            if (currentTimeStr < QUIZ_SCHEDULE.startTime || currentTimeStr > QUIZ_SCHEDULE.endTime) {
+                showModal('Di Luar Jam Operasional', `Kuis hanya dapat dikerjakan antara pukul ${QUIZ_SCHEDULE.startTime} hingga ${QUIZ_SCHEDULE.endTime} WIB. Waktu saat ini: ${currentTimeStr} WIB.`);
+                return;
+            }
+
+            // --- 2. VALIDASI FORMAT NIM (xx0120xxx) ---
             const nimInput = document.getElementById('nim').value.trim();
+            const nimRegex = /^\d{2}0120\d{3}$/;
+            
+            if (!nimRegex.test(nimInput)) {
+                showModal('Format NIM Tidak Valid', 'Pastikan NIM terdiri dari 9 digit angka dan mengandung kode program studi "0120" di tengah (Contoh: 230120001). NIM acak tidak diperbolehkan.');
+                return;
+            }
+
             const namaInput = document.getElementById('nama').value.trim();
             const kelasInput = document.getElementById('kelas').value;
             
